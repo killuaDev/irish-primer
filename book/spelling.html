@@ -1,0 +1,463 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Spelling - A Primer in Irish</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><div>Introduction</div></li><li class="chapter-item expanded "><a href="initial_mutations.html"><strong aria-hidden="true">1.</strong> Initial Mutations</a></li><li class="chapter-item expanded "><a href="the_sounds.html"><strong aria-hidden="true">2.</strong> The Sounds</a></li><li class="chapter-item expanded "><a href="spelling.html" class="active"><strong aria-hidden="true">3.</strong> Spelling</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">A Primer in Irish</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="intro-to-reading-irish-words"><a class="header" href="#intro-to-reading-irish-words">Intro to Reading Irish Words</a></h1>
+<p>Now that we've established what sounds exist in Irish, we can talk about how to pronounce a word based on how it's written.</p>
+<p>This is a beginner's guide, for a comprehensive reference see [[Muskerry Pronunciation]].</p>
+<h2 id="consonants"><a class="header" href="#consonants">Consonants</a></h2>
+<p>As discussed, Irish consonants can be either slender or broad, so the obvious question is how do we know from writing whether a consonant is slender or broad.</p>
+<p><strong>A consonant is slender if there is an 'i' before it, or if it's at the beginnning of a word followed by an 'e' or an 'i'.</strong> Otherwise it is broad.
+Note: 'i' includes 'í' and 'e' includes 'é'.</p>
+<p>Consonants next to one another are called consonant groups, all consonants in a group are the same type, either broad or slender with only a few exceptions.</p>
+<p>Note that the /k/ and /kʹ/ sounds are actually represented by the letter 'c' in Irish writing.</p>
+<p>Double consonants are pronounced the same as single consonants, only affecting the vowels around them.
+Except for slender <em>nn</em> which is pronounced as /ŋʹ/</p>
+<ul>
+<li><em>binn</em> - /bʹiːŋʹ/</li>
+</ul>
+<p>Note: 'r' at the beginning of a word is always broad, /r/</p>
+<ul>
+<li>rí - /riː/</li>
+<li>reic - /rekʹ/</li>
+</ul>
+<h4 id="some-examples"><a class="header" href="#some-examples">Some Examples</a></h4>
+<ul>
+<li><em>meas</em> (respect) - /mʹas/
+<ul>
+<li>We know that the 'm' is slender because it's at the start of the word, followed by an 'e'.</li>
+</ul>
+</li>
+<li><em>brat</em> (flag) - /brɑt/
+<ul>
+<li>Note here that both the 'b' and the 'r' are broad, as they are in a consonant group together</li>
+</ul>
+</li>
+<li><em>cleas</em> (trick) - /kʹlʹas/
+<ul>
+<li>Here both the 'c' and the 'l' are slender, as they are in a group together, at the start of a word followed by an 'e'. </li>
+</ul>
+</li>
+<li><em>cáis</em> (cheese) - /kɑːsʹ/
+<ul>
+<li>The 's' is slender because it follows an 'i'</li>
+</ul>
+</li>
+<li><em>fís</em> (vision) - /fʹiːsʹ/
+<ul>
+<li>The 'f' is slender because it's at the start of the word before an 'i', and the 's' is slender because it's after an 'i'</li>
+</ul>
+</li>
+</ul>
+<h2 id="vowels"><a class="header" href="#vowels">Vowels</a></h2>
+<p>Vowels often trip up learners, because when they come in groups their pronunciation is not always obvious, and can depend on the stress. </p>
+<p>Stress is the amount of emphasis we put on a syllable. For example, the first syllable is stressed in the word &quot;record&quot; in the phrase &quot;a record&quot;, but the second in the phrase &quot;I record&quot;.</p>
+<p>Usually the first syllable is stressed in Irish. Otherwise we mark stressed syllables with ' e.g. <a href="https://www.teanglann.ie/CanU/anois.mp3">/ə'nisʹ/</a>, the stress is on the second syllable. Stress can often be on a syllable other than the first if there's a long vowel in it. If there's more than one long vowel it is usually on the second syllable.</p>
+<h3 id="stressed-vowels"><a class="header" href="#stressed-vowels">Stressed Vowels</a></h3>
+<p>Single vowels are relatively simple, if they are stressed their pronunciation is the sound which shares their symbol (Except, note that a != /a/)</p>
+<ul>
+<li>a = /ɑ/</li>
+<li>e = /e/</li>
+<li>i = /i/</li>
+<li>u = /u/</li>
+<li>o = /o/</li>
+<li>á = /ɑː/</li>
+<li>é = /eː/</li>
+<li>í = /iː/</li>
+<li>ú = /uː/</li>
+<li>ó = /oː/</li>
+</ul>
+<p>It can be a bit more confusing when there's more than one vowel together.
+If there's a vowel which has a <em>síneadh fada</em> on it (this line above the áéíúó), it is the one pronounced </p>
+<ul>
+<li><em>ciúin</em> (quiet) - /kʹuːnʹ/
+<ul>
+<li>Note here that while the ú is the only vowel sound pronounced, the other letters serve to show that the first c and last n are slender</li>
+</ul>
+</li>
+<li>Except for éa which is pronounced as /ia/
+<ul>
+<li>scéal - /sʹkʹial/</li>
+<li>with some exceptions</li>
+</ul>
+</li>
+</ul>
+<p>Otherwise if all the vowels are short, you have to learn certain patterns</p>
+<ul>
+<li>ai = /ɑ/ </li>
+<li>ea, eai = /a/</li>
+<li>ei = /e/</li>
+<li>ui, oi = /i/</li>
+<li>io = /u/</li>
+</ul>
+<p>And these next combinations are read as either a vowel combination or a long vowel</p>
+<ul>
+<li>ao = /eː/</li>
+<li>aoi = /iː/</li>
+<li>eo, eoi = /oː/
+<ul>
+<li>with a few exceptions</li>
+</ul>
+</li>
+<li>ae, aei</li>
+<li>ia, iai = /iə/</li>
+<li>ua, uai = /uə/</li>
+</ul>
+<p>Note that for the final two, despite being spelt with an 'a', there is not actually an /a/ sound.</p>
+<p>If a short vowel comes before 'rd', 'rr', (or 'rl' or 'rn' <em>in the middle of a word</em>) it becomes long, e.g.</p>
+<ul>
+<li><em>ard</em> - /ɑːrd/</li>
+<li><em>tharla</em> - /hɑːrlə/</li>
+<li><em>fearr</em> - /fʹaːr/</li>
+</ul>
+<p>If a short vowel comes before nn, ll, ng, or m, it can become lengthened, or a combination of vowels could come about. This does not occur if these letters are followed by a vowel.</p>
+<ul>
+<li>ea, a -&gt; /au/
+<ul>
+<li><em>geall</em> - /gʹaul/</li>
+</ul>
+</li>
+<li>ai -&gt; /ai/</li>
+<li>ei -&gt; /əi/</li>
+<li>oi, ui, i -&gt; /iː/</li>
+<li>u, io, iu -&gt; /uː/</li>
+<li>o -&gt; /ou/ or /uː/
+<ul>
+<li><em>tonn</em> - /tuːn/</li>
+<li><em>poll</em> - /poul/</li>
+</ul>
+</li>
+</ul>
+<h4 id="some-examples-1"><a class="header" href="#some-examples-1">Some Examples</a></h4>
+<ul>
+<li><em>cas</em> (turn) - /kas/
+<ul>
+<li>the single 'a' here is pronounced as /a/</li>
+</ul>
+</li>
+<li><em>geal</em> (bright) - /gʹal/
+<ul>
+<li>the 'ea' is pronounced as /a/</li>
+<li>because of the 'e' we know that the 'g'  is slender</li>
+</ul>
+</li>
+<li><em>saol</em> (life) - /siːl/
+<ul>
+<li>the 'ao' is pronounced as /iː/</li>
+</ul>
+</li>
+<li><em>trua</em> (pity) - /truə/
+<ul>
+<li>ua is pronounced /uə/</li>
+</ul>
+</li>
+<li><em>corn</em> (trophy) - /koːrn/
+<ul>
+<li>short 'o' before 'rn' becomes lengthened to /oː/</li>
+</ul>
+</li>
+<li>buíon - /biːn/
+<ul>
+<li>we know the /iː/ vowel sound is used here because it's the only vowel in the group with a fada</li>
+<li>both consonants are broad</li>
+</ul>
+</li>
+<li><em>greim</em> (bite) - /gʹrʹəimʹ/
+<ul>
+<li>here, the vowel combination of /əi/ is indicated by ei before m.b</li>
+</ul>
+</li>
+</ul>
+<h3 id="unstressed-vowels"><a class="header" href="#unstressed-vowels">Unstressed Vowels</a></h3>
+<p>If a short vowel is unstressed, it is pronounced as /ə/ or /i/</p>
+<ul>
+<li>a, ea, io, iu, o, u -&gt; /ə/</li>
+<li>ai, ei, e, i, oi, ui -&gt; /i/</li>
+</ul>
+<p>If a long vowel is unstressed it is still pronounced normally.</p>
+<h4 id="some-examples-2"><a class="header" href="#some-examples-2">Some Examples</a></h4>
+<ul>
+<li><em>páiste</em> (child) - /paːsʹtʹi/
+the first syllable is stressed, so the unstressed 'e' is pronounced /i/</li>
+<li><em>bradán</em> (salmon) - /brə'dɑːn/
+<ul>
+<li>the second syllable is stressed, so the first 'a' is pronounced as /ə/, and the 'á' is still pronounced as /ɑː/</li>
+</ul>
+</li>
+</ul>
+<h2 id="lenition"><a class="header" href="#lenition">Lenition</a></h2>
+<p>Lenition was introduced previously, here we'll talk about how to read lenited consonants. We know if they are broad or slender depending  on the vowels around them, as with any consonants</p>
+<ul>
+<li>mh, bh = /v/ or /vʹ/</li>
+<li>ch = /x/ or /xʹ/
+<ul>
+<li>slender ch is /h/ if in the middle of a word</li>
+<li><em>oíche</em> - /iːhi/</li>
+</ul>
+</li>
+<li>dh, gh = /ɣ/ or /ɣʹ/
+<ul>
+<li>slender dh and gh at the <em>end</em> of a word are often pronounced /gʹ/</li>
+<li><em>tigh</em> - /tʹigʹ/</li>
+</ul>
+</li>
+<li>fh is completely silent</li>
+<li>ph = /f/ or /fʹ/</li>
+<li>sh = /h/
+<ul>
+<li>with some exceptions</li>
+</ul>
+</li>
+<li>th = /h/</li>
+<li>occasionally r is lenited to /rʹ/, it will be pointed out where this happens
+<ul>
+<li>á rá = /ɑ: rʹɑː/</li>
+</ul>
+</li>
+</ul>
+<h4 id="some-examples-3"><a class="header" href="#some-examples-3">Some Examples</a></h4>
+<ul>
+<li><em>dhún</em> (closed) - /ɣuːn/
+<ul>
+<li>dh = /ɣ/, because it's broad</li>
+</ul>
+</li>
+<li><em>cheap</em> (thought) - /xʹap/
+<ul>
+<li>ch = /xʹ/, because it's slender</li>
+</ul>
+</li>
+<li><em>thuill</em> (earned) - /hiːlʹ/
+<ul>
+<li>th = /h/</li>
+</ul>
+</li>
+</ul>
+<h2 id="eclipsis"><a class="header" href="#eclipsis">Eclipsis</a></h2>
+<p>Eclipsis was introduced previously, here we'll talk about how to read eclipsed consonants. We know if they are broad or slender depending  on the vowels around them, as with any consonants</p>
+<ul>
+<li>Except for <strong>n</strong>g, when eclipsis occurs the original letter is silent and the added letter(s) is pronounced
+<ul>
+<li><strong>m</strong>b = /m/ or /mʹ/</li>
+<li><strong>g</strong>c = /g/ or /gʹ/</li>
+<li><strong>n</strong>d = /n/ or /nʹ/</li>
+<li><strong>bh</strong>f = /v/ or /vʹ/</li>
+<li><strong>b</strong>p = /b/ or /bʹ/</li>
+<li><strong>d</strong>t = /d/ or /dʹ/</li>
+</ul>
+</li>
+<li><strong>n</strong>g is pronounced as /ŋ/ or /ŋʹ/</li>
+</ul>
+<h4 id="some-examples-4"><a class="header" href="#some-examples-4">Some Examples</a></h4>
+<ul>
+<li><em>a ngol</em> (their crying) - /ə ŋol/</li>
+<li>a gciall (their sense) - /i gʹiəl/</li>
+<li>a bhfalla - /ə vɑlə/</li>
+</ul>
+<hr />
+<p>The information here is added to in the pages about verb forms, which are often exceptional in their pronunciation, and in the page about /əi/ and /au/.</p>
+<p>There are various exceptions that aren't mentioned here, but can be seen in [[Muskerry Pronunciation]]</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="the_sounds.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="the_sounds.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

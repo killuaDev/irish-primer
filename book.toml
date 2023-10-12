@@ -1,0 +1,6 @@
+[book]
+authors = ["killuaDev"]
+language = "en"
+multilingual = false
+src = "src"
+title = "A Primer in Irish"

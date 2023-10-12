@@ -1,0 +1,1011 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>A Primer in Irish</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><div>Introduction</div></li><li class="chapter-item expanded "><a href="initial_mutations.html"><strong aria-hidden="true">1.</strong> Initial Mutations</a></li><li class="chapter-item expanded "><a href="the_sounds.html"><strong aria-hidden="true">2.</strong> The Sounds</a></li><li class="chapter-item expanded "><a href="spelling.html"><strong aria-hidden="true">3.</strong> Spelling</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">A Primer in Irish</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="sound-changes"><a class="header" href="#sound-changes">Sound Changes</a></h1>
+<p>In Irish, you may see the same word spelt differently, for example </p>
+<ul>
+<li><em>Tá <strong>bó</strong> anseo</em>:: A <strong>cow</strong> is here</li>
+<li><em>Tá a <strong>bhó</strong> anseo</em>:: His <strong>cow</strong> is here
+In the first example, cow is <em>bó</em>, and in the second it is <em>bhó</em>.</li>
+</ul>
+<p>The reasons for this is that Irish has &quot;initial sound changes&quot;, where the sound at the start of a word changes depending on certain circumstances. This may sound difficult but it's actually quite simple to learn the types of changes that can happen.</p>
+<p>It's not necessary to learn every situation in which these changes are triggered, rather you should recognise the terms and the sound changes that are made, and as you learn something which causes them, you'll understand what it means.</p>
+<h2 id="séimhiú---lenition"><a class="header" href="#séimhiú---lenition"><em>Séimhiú</em> - Lenition</a></h2>
+<p>Lenition, known as <em>séimhiú</em> in Irish, means softening and is a sound change which can happen to most consonants in Irish, where they go from one sound to another. In the first example, <a href="https://www.teanglann.ie/CanC/b%C3%B3.mp3"><em>bó</em></a> becomes <a href="http://fuaimeanna.ie/sounds/a_bhoo_i3_s3.mp3"><em>a bhó</em></a>.
+This is represented in writing by adding a <em>h</em> after the consonant. 
+Some consonants don't have written lenited forms in Muskerry Irish, however they may still have a different sound when lenited, notably:</p>
+<ul>
+<li>l, n, r, h</li>
+<li>The consonants found only in borrowed words: j, v, x, z
+The way each lenited form is pronounced is discussed in further detail in [[Muskerry Intro to Pronunciation|Pronunciation]]</li>
+</ul>
+<p>An example of a trigger is <em><strong>mo</strong></em> which means &quot;my&quot;, words following <em>mo</em> are lenited. </p>
+<ul>
+<li><em>ceol</em>:: music (<a href="http://fuaimeanna.ie/sounds/mo_cheol_i3_s3.mp3">listen</a>)</li>
+<li><em>mo c<strong>h</strong>eol</em>:: my music (<a href="http://fuaimeanna.ie/sounds/mo_cheol_i3_s3.mp3">listen</a></li>
+</ul>
+<p>Cpnsonants without lenited forms remain the same, no <em>h</em> is added in the spelling.</p>
+<ul>
+<li><em>leaba</em>:: bed (<a href="http://fuaimeanna.ie/sounds/leaba_i3_s3.mp3">listen</a>)</li>
+<li><em>mo leaba</em>:: my bed</li>
+</ul>
+<h2 id="urú---eclipsis"><a class="header" href="#urú---eclipsis"><em>Urú</em> - Eclipsis</a></h2>
+<p>Eclipsis, known as <em>urú</em> in Irish, is a sound change which can happen to some consonants and the vowels in Irish. It is represented in writing by putting one or more additional consonants before the beginning of the word.
+For example:</p>
+<ul>
+<li><em>gaol</em>:: relation (<a href="http://fuaimeanna.ie/sounds/gaol_i3_s3.mp3">listen</a>)</li>
+<li><em>a <strong>n</strong>gaol</em>:: their relation (<a href="http://fuaimeanna.ie/sounds/a_ngaol_i3_s3.mp3">listen</a>)</li>
+</ul>
+<p>The letters written change based on the original starting letter, as follows:</p>
+<ul>
+<li>Vowel -&gt; n- + vowel: <em>úll</em> -&gt; <em>a <strong>n</strong>-úll</em></li>
+<li>b -&gt; mb: <em>bord</em> -&gt; <em>a <strong>m</strong>bord</em></li>
+<li>c -&gt; gc: <em>cat</em> -&gt; <em>a <strong>g</strong>cat</em></li>
+<li>d -&gt; nd: <em>doras</em> -&gt; <em>a <strong>n</strong>doras</em></li>
+<li>f -&gt; bhf: <em>féar</em> -&gt; <em>a <strong>bh</strong>féar</em></li>
+<li>g -&gt; ng: <em>geata</em> -&gt; <em>a <strong>n</strong>geata</em></li>
+<li>p -&gt; bp: <em>poll</em> -&gt; <em>a <strong>b</strong>poll</em></li>
+<li>t -&gt; dt: <em>téad</em> -&gt; <em>a <strong>d</strong>téad</em></li>
+</ul>
+<p>The pronunciation of the various eclipsed forms are explained in [[Muskerry Intro to Pronunciation|Pronunciation]]. Some sounds are not eclipsed, notably the sounds made by:</p>
+<ul>
+<li>h, l, m, n, r, s</li>
+<li>The consonants found only in borrowed words: j, v, x, z</li>
+</ul>
+<p>An example of a trigger is <em><strong>a</strong></em> meaning &quot;their&quot; (<em>a</em> can also mean other things), words following <em><strong>a</strong></em> meaning &quot;their&quot; are eclipsed.</p>
+<ul>
+<li><em>guí</em>:: prayer (<a href="http://fuaimeanna.ie/sounds/guii_i3_s3.mp3">listen</a>)</li>
+<li><em>a <strong>n</strong>guí</em>:: their prayer (<a href="http://fuaimeanna.ie/sounds/a_nguii_i3_s3.mp3">listen</a>)</li>
+</ul>
+<p>Note that the letters added to represent eclipsis are never capitalised, the &quot;true&quot; first letter of the word is. And in the event of a vowel being eclipsed and capitalised, the hyphen is removed</p>
+<ul>
+<li><em>Tír na <strong>n</strong>Óg</em>:: The Land of the Young</li>
+</ul>
+<h2 id="t-"><a class="header" href="#t-"><em>t-</em></a></h2>
+<p><em>t-</em> is sometimes added before vowels, similar to eclipsis the hyphen is removed if the word is capitalised. 
+The pronunciation is discussed in [[Muskerry Intro to Pronunciation|Pronunciation]]. </p>
+<p>An example of a trigger of <em>t-</em> is <em>an</em> before a masculine noun in the nominative starting with a vowel. <strong>(Don't worry if you don't know what that means as it will be explained later)</strong> </p>
+<ul>
+<li><em>airgead</em>:: money (<a href="http://fuaimeanna.ie/sounds/airgead_i3_s3.mp3">listen</a>)</li>
+<li><em>an <strong>t</strong>-airgead</em>:: the money (<a href="http://fuaimeanna.ie/sounds/an_t-airgead_i3_s3.mp3">listen</a>)</li>
+</ul>
+<h2 id="h"><a class="header" href="#h"><em>h</em></a></h2>
+<p><em>h</em> can be added to words starting with vowels, it is not followed by a hyphen in writing. It is important not to confuse this with lenition which is represented with a h <em>after a consonant</em>. The two are separate and are never triggered by the same things. The pronunciation is discussed in [[Muskerry Intro to Pronunciation|Pronunciation]].</p>
+<p>One example is that a <em>h</em> is added before a vowel after the word <em>le</em>.</p>
+<ul>
+<li><em>aol</em>:: lime (<a href="https://www.teanglann.ie/CanC/aol.mp3">listen</a>)</li>
+<li><em>le <strong>h</strong>aol</em>:: with lime (<a href="http://fuaimeanna.ie/sounds/le_haol_i3_s3.mp3">listen</a>)</li>
+</ul>
+<h2 id="ts"><a class="header" href="#ts"><em>t(s)</em></a></h2>
+<p><em>t</em> can be added to words starting with <em>s</em> in some places. This is a special type of lenition, which can happen after the word <em>an</em>. In this case, only the t is pronounced and the s is silent.</p>
+<p>An example of a trigger of <em>t</em> is <em>an</em> before a feminine noun in the nominative starting with an <em>s</em>. <strong>(Don't worry if you don't know what this means as it will be explained later)</strong> </p>
+<ul>
+<li><em>sraith</em>:: series (<a href="https://www.teanglann.ie/CanC/sraith.mp3">listen</a>)</li>
+<li><em>an <strong>t</strong>sraith</em>:: the series (<a href="https://voca.ro/1ldbiBNJtCTn">listen</a>)</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>It's important to remember that these are primarily <em>sound</em> changes, and the way we write them is just a way to represent the change in pronunciation that occurs. Keep this in mind when going into the section on pronunciation.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="intro-to-pronunciation"><a class="header" href="#intro-to-pronunciation">Intro to Pronunciation</a></h1>
+<h2 id="the-sounds-of-irish"><a class="header" href="#the-sounds-of-irish">The Sounds of Irish</a></h2>
+<p>It's important to realise that the sounds used in Irish are not the same as the sounds used in English, even if you speak an Irish dialect of English.</p>
+<p>Irish as a language has different sounds to English, for example <a href="http://fuaimeanna.ie/sounds/a_ghaa_i2_s2.mp3">this sound</a>. But what you may not realise is that lots of the sounds in Irish that sound <em>similar</em> to English are not the same as english sounds.</p>
+<p>Irish has two versions of each consonant, a <em>broad</em> version and <em>slender</em> version. Often neither of these sounds are exactly the same as an English sound.
+Take for example, <em><a href="http://fuaimeanna.ie/ga/Recordings.aspx?Ortho=b%C3%B3">bó</a></em>, <em><a href="http://fuaimeanna.ie/ga/Recordings.aspx?Ortho=beo">beo</a></em>, <em><a href="http://fuaimeanna.ie/ga/Recordings.aspx?Ortho=bu%C3%AD">buí</a></em>, and <em><a href="http://fuaimeanna.ie/ga/Recordings.aspx?Ortho=b%C3%AD">bí</a></em>. <em>Bó</em> and <em>buí</em> use a broad 'b', but <em>beo</em> and <em>bí</em> use a slender 'b'. It may sound like the broad 'b' is just 'bw' and the slender one is just 'by', but the difference is actually a little more subtle. Essentially the broad 'b' starts in a position similar to the 'w', with the lips more rounded, and the slender one starts in a position similar to the 'y' with lips spread. </p>
+<p>When talking about pronunciation, we will put letters between slashes, e.g. /b/ to show that we're talking about a specific sound, the meaning of all of these letters and symbols will be explained. The symbol ʹ will be added to indicate a slender consonant, otherwise it is be broad </p>
+<ul>
+<li>/b/ - broad 'b' sound</li>
+<li>/bʹ/ - slender 'b' sound</li>
+</ul>
+<p>Be aware that many of these sounds can vary slightly depending on the context, these are just general guides.</p>
+<p>Spelling will be talked about separately, so you needn't worry about the spelling of words given in this lesson though feel free to take note of any patterns.</p>
+<h2 id="consonants"><a class="header" href="#consonants">Consonants</a></h2>
+<p>Each group of consonants has a similar pattern between how the broad and slender sounds are pronounced.
+When I refer to flattening your lips I mean making the gap between them long and thin, rather than rounded. </p>
+<ul>
+<li>
+<ol>
+<li>
+<ul>
+<li>/b/ 
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/boo_i2_s2.mp3">bó</a></em> (cow)</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/buii_i2_s2.mp3">buí</a></em> (yellow)</li>
+<li>This sound is similar to the English sound 'b', but the lips are rounded and pushed forward, and the back of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/bʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/beo_i2_s2.mp3">beo</a></em> (alive)</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/bii_i2_s2.mp3">bí</a></em> (be)</li>
+<li>This sound is similar to the English sound 'b', but the lips are flattened and the middle of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/p/
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/paca.mp3">paca</a></em> (pack)</li>
+<li>This sound is similar to the English sound 'p', but the lips are rounded and pushed forward, and the back of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/pʹ/
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/peaca.mp3">peaca</a></em> (sin)</li>
+<li>This sound is similar to the English sound 'p', but the lips are flattened and the middle of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/m/
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/maoin.mp3">maoin</a></em> (wealth)</li>
+<li>This sound is similar to the English sound 'm', but the lips are rounded and pushed forward, and the back of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/mʹ/
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/m%C3%ADn.mp3">mín</a></em> (smooth)</li>
+<li>This sound is similar to the English sound 'm', but the lips are flattened and the middle of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>The following sounds appear similar to english v and f, but they are pronounced with the two lips instead of the lips and the teeth traditionally.</li>
+<li>/v/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/bhaan_i2_s2.mp3">bhán</a></em> (white)</li>
+<li>This sound is similar to the English sound 'v', except it's made with the lips alone, which are rounded, and the back of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/vʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/bhii_i2_s2.mp3">bhí</a></em> (was)</li>
+<li>This sound is similar to the English sound 'v', except it's made with the lips alone, which are flattened and the middle of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/f/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/fada_i2_s2.mp3">fada</a></em> (long)</li>
+<li>This sound is similar to the English sound 'f', except it's made with the lips alone, which are rounded and pushed forward, and the back of the tongue is raised slightly.</li>
+</ul>
+</li>
+<li>/fʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/fill_i2_s2.mp3">fill</a></em> (return)</li>
+<li>This sound is similar to the English sound 'f', except it's made with the lips alone, which are flattened and the middle of the tongue is raised slightly.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>
+<ul>
+<li>In the munster dialects, the slender sounds in this group are quite similar to the English sounds, more so than in any other dialects.</li>
+<li>/d/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/duine_i2_s2.mp3">duine</a></em> (person)</li>
+<li>Unlike the english sound 'd', which is usually made at the ridge behind the teeth, this sound is made at the teeth themselves, where the &quot;th&quot; in &quot;this&quot; would be made. Unlike &quot;th&quot; though, the tongue actually hits off the teeth rather than just creating friction with them</li>
+</ul>
+</li>
+<li>/dʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/deo_i2_s2.mp3">deo</a></em> (ever)</li>
+<li>To make this sound, start by putting your mouth in the position to make the English 'd' sound and then raise the middle of your tongue very slightly. The lips are flattened slightly.</li>
+</ul>
+</li>
+<li>/t/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/tuii_i2_s2.mp3">tuí</a></em> (thatch)</li>
+<li>Unlike the english sound 't', which is usually made at the ridge behind the teeth, this sound is made at the teeth themselves, where the &quot;th&quot; in &quot;thought&quot; would be made. Unlike &quot;th&quot; though, the tongue actually hits off the teeth rather than just creating friction with them</li>
+</ul>
+</li>
+<li>/tʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/tii_i2_s2.mp3">tí</a></em> (of a house)</li>
+<li>To make this sound, start by putting your mouth in the position to make the English 't' sound and then raise the middle of your tongue very slightly. The lips are flattened slightly</li>
+</ul>
+</li>
+<li>/n/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/naoi_i2_s2.mp3">naoi</a></em> (nine)</li>
+<li>To make this sound, put your mouth in the position of an 'n' in the word 'nut', press your tongue towards the top of your teeth (where they meet the roof) and raise the back of your tongue slightly </li>
+</ul>
+</li>
+<li>/nʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/nii_i2_s2.mp3">ní</a></em> (not)</li>
+<li>To make this sound, put your mouth in the position of an 'n' in the word 'nick', and raise the middle of your tongue very slightly.</li>
+</ul>
+</li>
+<li>/l/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/loon_i2_s2.mp3">lón</a></em> (lunch)</li>
+<li>To make this sound, put your mouth in the position of an 'l' in the word 'luck', press your tongue towards the top of your teeth (where they meet the roof) and raise the back of your tongue slightly </li>
+</ul>
+</li>
+<li>/lʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/leon_i2_s2.mp3">leon</a></em> (lion)</li>
+<li>To make this sound, put your mouth in the position of an 'l' in the word 'lick', and raise the middle of your tongue very slightly </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>
+<ul>
+<li>#TODO(format, add recording?): You can practice this distinction with the word &quot;cookie&quot;, which has a sound similar to /k/ at the first syllable and one similar to /kʹ/ in the second, practice saying cookie and feel how your tongue moves between them. Now try using the same /k/ sound for both, and the same /kʹ/ sound for both</li>
+<li>/g/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/gall_i2_s2.mp3">gall</a></em> (foreigner)</li>
+<li>To make this sound, put your mouth in position to say the 'g' in 'gut', but raise the back of your tongue up slightly more.</li>
+</ul>
+</li>
+<li>/gʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/geall_i2_s2.mp3">geall</a></em> (promise)</li>
+<li>To make this sound, put your mouth in position to say the 'g' in 'gift', but raise the middle of your tongue up slightly more. The lips are flattened slightly</li>
+</ul>
+</li>
+<li>/k/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cad_i2_s2.mp3">cad</a></em> (what)</li>
+<li>To make this sound, put your mouth in position to say the 'c' in 'cut', but raise the back of your tongue up slightly more.</li>
+</ul>
+</li>
+<li>/kʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cead_i2_s2.mp3">cead</a></em> (permission)</li>
+<li>To make this sound, put your mouth in position to say the 'k' in 'kit', but raise the middle of your tongue up slightly more. The lips are flattened slightly</li>
+</ul>
+</li>
+<li>/x/
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/chun.mp3">chun</a></em> (to)</li>
+<li>To make this sound, place your mouth as you would to make an English &quot;c&quot; sound as in &quot;cut&quot;, but but instead of fully bringing your tongue up to touch the roof of your mouth, leave some space between the tongue and the roof.</li>
+</ul>
+</li>
+<li>/xʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cheannaigh_i2_s2.mp3">cheannaigh</a></em> (bought)</li>
+<li>To make this sound, try making a sound similar to the start of the word &quot;hue&quot; (a &quot;hy&quot; sound), and raising the middle of your tongue, enough that you can hear some friction. The lips are flattened slightly.</li>
+</ul>
+</li>
+<li>/ɣ/
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/dh%C3%A1.mp3">dhá</a></em> (two)</li>
+<li>To make this sound, place your mouth as you would to make an English &quot;g&quot; sound as in &quot;gut&quot;, but but instead of fully bringing your tongue up to touch the roof of your mouth, leave some space between the tongue and the roof.</li>
+</ul>
+</li>
+<li>/ɣʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/dhiiol_i2_s2.mp3">dhíol</a></em> (sold)</li>
+<li>To make this sound, try making a sound similar to the English &quot;y&quot; in &quot;yes&quot;, and raising the middle of your tongue, enough that you can hear some friction. The lips are flattened slightly.</li>
+</ul>
+</li>
+<li>These next two sounds are often quite confusing to english speakers, as they are similar to the english &quot;ng&quot; sound in &quot;sing&quot; but can also occur at the start of words</li>
+<li>/ŋ/
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/rang.mp3">ra<strong>ng</strong></a></em> (class)</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/a_ngol_i2_s2.mp3">a <strong>ng</strong>ol</a></em> (their crying) </li>
+<li>This sound is similar to &quot;ng&quot; in &quot;song&quot; in English, but with the back of the tongue raised.</li>
+</ul>
+</li>
+<li>/ŋʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/tarraing_i2_s2.mp3">tarrai<strong>ng</strong></a></em> (draw)</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/a_ngeis_i2_s2.mp3">a <strong>ng</strong>eis</a></em> (their taboo)</li>
+<li>This sound is similar to the &quot;ng&quot; in &quot;sing&quot; in English, but with the middle of the tongue raised, the are lips flattened slightly.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li></li>
+</ol>
+<ul>
+<li>/s/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/suii_i2_s2.mp3">suí</a></em> (sitting)</li>
+<li>This sound is similar to the 's' in the word 'suck', but the middle of your tongue should be making contact with the roof, rather than the tip of your tongue which should be relaxed near the bottom row of teeth, and raise the back of your tongue slightly </li>
+</ul>
+</li>
+<li>/sʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/sii_i2_s2.mp3">sí</a></em> (she)</li>
+<li>To make this sound, put your mouth in the position of 'sh' in 'she', and pull back your lips and raise the middle of your tongue slightly</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li>
+<ul>
+<li>The 'r' sounds in Irish can be quite difficult for learners, as they don't have any English equivalent. Don't be discouraged if you can't make these sounds immediately as they can be some of the most difficult.</li>
+<li>/r/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/fuar_i2_s2.mp3">fuar</a></em> (cold)</li>
+<li>This sound is similar to the 'r' in Spanish 'pero', if you don't know how to make this sound, it's made at the ridge behind your teeth, similar to the English 'd', but the sound is made by lightly tapping your tongue off of it.</li>
+<li>You may be able to practice making it by repeatedly switching between the sounds 'd' and 'l' quickly. </li>
+<li>The back of the tongue is raised slightly for this sound. </li>
+</ul>
+</li>
+<li>/rʹ/
+<ul>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/fuair_i2_s2.mp3">fuair</a></em> (got)</li>
+<li>This sound is similar (perhaps surprisingly) to the 's' in 'treasure', except the middle of your tongue should be raised up towards the roof of your mouth.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>/h/ </p>
+<ul>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/hata.mp3">hata</a></em> (hat)</li>
+<li>This consonant only has one form and it is pronounced the same as the english sound &quot;h&quot; in &quot;hat&quot; or &quot;hit&quot;</li>
+</ul>
+</li>
+</ul>
+<h2 id="vowels"><a class="header" href="#vowels">Vowels</a></h2>
+<p>Something to be quite careful of as a learner of Irish is not to simply use the vowels you're used to in English, as there are many differences. In English we often use combinations of vowel sounds such as in the word &quot;name&quot;, if you try to hold the long A vowel there you will hear that it shifts from an &quot;eh&quot; sound to an &quot;ee&quot; sound.
+It's less practical to describe physically how to make vowel sounds, but you should be able to mimic them well if you listen to them</p>
+<ul>
+<li>Long (the ː symbol represents a longer sound)
+<ul>
+<li>
+<p>/ɑː/</p>
+<ul>
+<li>This sound is similar to the vowel in &quot;call&quot; in many Irish and English accents, you may not be used to the sound if you speak with a North American accent, but comes relatively easy with practice.</li>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/c%C3%A1s.mp3">cás</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanC/me%C3%A1n.mp3">meán</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/c%C3%A1is.mp3">cáis</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/meaain_i2_s2.mp3">meáin</a></em></li>
+</ul>
+</li>
+<li>
+<p>/aː/</p>
+<ul>
+<li>This sound is like an extended version of the vowel similar to the one you might say in the English &quot;cat&quot;</li>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/coime%C3%A1d.mp3">coim<strong>eá</strong>d</a></em></li>
+</ul>
+</li>
+<li>
+<p>/eː/</p>
+<ul>
+<li>This is a long sound, and not a combination of two vowels like the English &quot;long A&quot; that we mentioned earlier, this can be unusual for some English speakers but the sound itself is not difficult to mimic.</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/gael_i2_s2.mp3">Gael</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/gaeil_i2_s2.mp3">Gaeil</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanU/c%C3%A9im.mp3">céim</a></em> </li>
+</ul>
+</li>
+<li>
+<p>/iː/</p>
+<ul>
+<li>This sound will be quite familiar to most English speakers as it is quite close to the English &quot;ee&quot; sound</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/buiion_i2_s2.mp3">buíon</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanU/f%C3%ADor.mp3">fíor</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/maoin.mp3">maoin</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanC/s%C3%ADn.mp3">sín</a></em></li>
+</ul>
+</li>
+<li>
+<p>/oː/ </p>
+<ul>
+<li>This sound is another one that English speakers may make a mistake with. In English there is often a combination of two vowels in the &quot;long O&quot; such as in &quot;coat&quot;. In Irish this is one long sound.</li>
+<li>as in <em><a href="https://www.teanglann.ie/CanM/l%C3%B3n.mp3">lón</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanC/leon.mp3">leon</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/pooit_i3_s3.mp3">póit</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/feoil_i3_s3.mp3">feoil</a></em></li>
+</ul>
+</li>
+<li>
+<p>/uː/ </p>
+<ul>
+<li>This sound is similar to the long &quot;oo&quot; sound in English, but it may be raised higher in your mouth than your normal English form (??)</li>
+<li>as in <em><a href="https://www.teanglann.ie/CanC/c%C3%BAl.mp3">cúl</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanC/di%C3%BAl.mp3">diúl</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanU/c%C3%BAil.mp3">cúil</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanU/ci%C3%BAin.mp3">ciúin</a></em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Short
+<ul>
+<li>
+<p>/ɑ/</p>
+<ul>
+<li>This sound can be similar to the sounds in &quot;cot&quot; in English</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cad_i2_s2.mp3">cad</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cait_i2_s2.mp3">cait</a></em></li>
+</ul>
+</li>
+<li>
+<p>/a/</p>
+<ul>
+<li>This sound can be similar to the sound in &quot;cat&quot; in English</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cead_i2_s2.mp3">cead</a></em></li>
+</ul>
+</li>
+<li>
+<p>/e/</p>
+<ul>
+<li>This sound is like the short &quot;e&quot; in many dialects of english such as in &quot;pet&quot;</li>
+<li>as in <em><a href="https://www.teanglann.ie/CanC/geit.mp3">geit</a></em></li>
+<li>as in <em><a href="https://www.teanglann.ie/CanC/deis.mp3">deis</a></em></li>
+</ul>
+</li>
+<li>
+<p>/i/</p>
+<ul>
+<li>This sound is like the short &quot;i&quot; in many dialects of english such as in &quot;pin&quot;</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cuir_i3_s3.mp3">cuir</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/tit_i2_s2.mp3">tit</a></em></li>
+</ul>
+</li>
+<li>
+<p>/o/</p>
+<ul>
+<li>This sound is similar to the English short &quot;u&quot; sound but is lower in the mouth</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cos_i2_s2.mp3">cos</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cois_i3_s3.mp3">cois</a></em></li>
+</ul>
+</li>
+<li>
+<p>/u/</p>
+<ul>
+<li>This sound is similar to the English short &quot;u&quot; sound but is higher in the mouth, and is more rounded</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/bun_i3_s3.mp3">bun</a></em></li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/triuf_i2_s2.mp3">triuf</a></em></li>
+</ul>
+</li>
+<li>
+<p>/ə/</p>
+<ul>
+<li>This sound is actually quite common in English, it is a neutral vowel meaning your mouth is quite relaxed when you make it, it occurs in unstressed syllables when they're said quickly such as
+<ul>
+<li><strong>a</strong>bout</li>
+<li>tel<strong>e</strong>phone</li>
+</ul>
+</li>
+<li>as in the second syllable of <em><a href="http://fuaimeanna.ie/sounds/fada_i2_s2.mp3">fad<strong>a</strong></a></em> (long)</li>
+<li>It can sound closer to the /i/ sound if it's surrounded by slender consonants, and will be written as such
+<ul>
+<li>as in the second syllable of <em><a href="http://fuaimeanna.ie/sounds/aire_i2_s2.mp3">air<strong>e</strong></a></em> (minister)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Vowel Combinations
+<ul>
+<li>The following two both sound similar to the english &quot;long I&quot; sound that would be in &quot;time&quot;
+<ul>
+<li>/ai/
+<ul>
+<li>This sound starts with more of an open /a/</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/caint_i2_s2.mp3">caint</a></em> (talk)</li>
+</ul>
+</li>
+<li>/əi/
+<ul>
+<li>This sound starts more relaxed sounding similar to /ə/</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/fadhb_i2_s2.mp3">fadhb</a></em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>/au/
+<ul>
+<li>This vowel combination sounds much like the English vowel sound in &quot;flour&quot; or &quot;now&quot;</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/ceann_i2_s2.mp3">ceann</a></em> (head)</li>
+</ul>
+</li>
+<li>/ou/
+<ul>
+<li>This vowel combination sounds like the &quot;long O&quot; in &quot;home&quot; in some dialects of Engish #TODO: recording</li>
+<li>Despite being traditionally different, most speakers these days would use the sound /au/ in place of this one.</li>
+<li></li>
+</ul>
+</li>
+<li>/uə/
+<ul>
+<li>This vowel combination doesn't have an English equivalent, but it is a combination of a shortened /uː/ sound and the neutral /ə/ vowel. </li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/cuan_i2_s2.mp3">cuan</a></em> (harbour)</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/buail_i3_s3.mp3">buail</a></em> (hit)</li>
+</ul>
+</li>
+<li>/iə/
+<ul>
+<li>This vowel combination doesn't have an English equivalent, but it is a combination of a shortened /iː/ sound and the neutral /ə/ vowel.</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/giall_i3_s3.mp3">giall</a></em> (jaw)</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/riail_i2_s2.mp3">riail</a></em> (rule)</li>
+</ul>
+</li>
+<li>/ia/
+<ul>
+<li>This sound is quite similar to /iə/ but it is different, ending with the /a/ sound rather than the /ə/</li>
+<li>as in <em><a href="http://fuaimeanna.ie/sounds/ceead_i2_s2.mp3">céad</a></em> (hundred)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="exercises"><a class="header" href="#exercises">Exercises</a></h2>
+<p>Practice saying each of these sounds, paying attention to the recordings for any sounds you struggle with, don't worry if you can't get them yet, as pronunciation takes a lot of time to learn and perfect.</p>
+<p>Looking back to check any symbols you can't remember, try figuring out how these words sound, and then listen to the recordings to see if you were right.</p>
+<ul>
+<li>/sʹuːl/ (<a href="https://www.teanglann.ie/CanM/si%C3%BAl.mp3">listen</a>)</li>
+<li>/kalʹiːnʹ/ (<a href="https://www.teanglann.ie/CanM/cail%C3%ADn.mp3">listen</a>)</li>
+<li>/bʹerʹ/ (<a href="https://www.teanglann.ie/CanM/beir.mp3">listen</a>)</li>
+<li>/maːlə/ (<a href="https://www.teanglann.ie/CanM/m%C3%A1la.mp3">listen</a>)</li>
+<li>/kad/ (<a href="https://www.teanglann.ie/CanM/cad.mp3">listen</a>)</li>
+<li>/kʹoːl/ (<a href="https://www.teanglann.ie/CanM/ceol.mp3">listen</a>)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="intro-to-reading-irish-words"><a class="header" href="#intro-to-reading-irish-words">Intro to Reading Irish Words</a></h1>
+<p>Now that we've established what sounds exist in Irish, we can talk about how to pronounce a word based on how it's written.</p>
+<p>This is a beginner's guide, for a comprehensive reference see [[Muskerry Pronunciation]].</p>
+<h2 id="consonants-1"><a class="header" href="#consonants-1">Consonants</a></h2>
+<p>As discussed, Irish consonants can be either slender or broad, so the obvious question is how do we know from writing whether a consonant is slender or broad.</p>
+<p><strong>A consonant is slender if there is an 'i' before it, or if it's at the beginnning of a word followed by an 'e' or an 'i'.</strong> Otherwise it is broad.
+Note: 'i' includes 'í' and 'e' includes 'é'.</p>
+<p>Consonants next to one another are called consonant groups, all consonants in a group are the same type, either broad or slender with only a few exceptions.</p>
+<p>Note that the /k/ and /kʹ/ sounds are actually represented by the letter 'c' in Irish writing.</p>
+<p>Double consonants are pronounced the same as single consonants, only affecting the vowels around them.
+Except for slender <em>nn</em> which is pronounced as /ŋʹ/</p>
+<ul>
+<li><em>binn</em> - /bʹiːŋʹ/</li>
+</ul>
+<p>Note: 'r' at the beginning of a word is always broad, /r/</p>
+<ul>
+<li>rí - /riː/</li>
+<li>reic - /rekʹ/</li>
+</ul>
+<h4 id="some-examples"><a class="header" href="#some-examples">Some Examples</a></h4>
+<ul>
+<li><em>meas</em> (respect) - /mʹas/
+<ul>
+<li>We know that the 'm' is slender because it's at the start of the word, followed by an 'e'.</li>
+</ul>
+</li>
+<li><em>brat</em> (flag) - /brɑt/
+<ul>
+<li>Note here that both the 'b' and the 'r' are broad, as they are in a consonant group together</li>
+</ul>
+</li>
+<li><em>cleas</em> (trick) - /kʹlʹas/
+<ul>
+<li>Here both the 'c' and the 'l' are slender, as they are in a group together, at the start of a word followed by an 'e'. </li>
+</ul>
+</li>
+<li><em>cáis</em> (cheese) - /kɑːsʹ/
+<ul>
+<li>The 's' is slender because it follows an 'i'</li>
+</ul>
+</li>
+<li><em>fís</em> (vision) - /fʹiːsʹ/
+<ul>
+<li>The 'f' is slender because it's at the start of the word before an 'i', and the 's' is slender because it's after an 'i'</li>
+</ul>
+</li>
+</ul>
+<h2 id="vowels-1"><a class="header" href="#vowels-1">Vowels</a></h2>
+<p>Vowels often trip up learners, because when they come in groups their pronunciation is not always obvious, and can depend on the stress. </p>
+<p>Stress is the amount of emphasis we put on a syllable. For example, the first syllable is stressed in the word &quot;record&quot; in the phrase &quot;a record&quot;, but the second in the phrase &quot;I record&quot;.</p>
+<p>Usually the first syllable is stressed in Irish. Otherwise we mark stressed syllables with ' e.g. <a href="https://www.teanglann.ie/CanU/anois.mp3">/ə'nisʹ/</a>, the stress is on the second syllable. Stress can often be on a syllable other than the first if there's a long vowel in it. If there's more than one long vowel it is usually on the second syllable.</p>
+<h3 id="stressed-vowels"><a class="header" href="#stressed-vowels">Stressed Vowels</a></h3>
+<p>Single vowels are relatively simple, if they are stressed their pronunciation is the sound which shares their symbol (Except, note that a != /a/)</p>
+<ul>
+<li>a = /ɑ/</li>
+<li>e = /e/</li>
+<li>i = /i/</li>
+<li>u = /u/</li>
+<li>o = /o/</li>
+<li>á = /ɑː/</li>
+<li>é = /eː/</li>
+<li>í = /iː/</li>
+<li>ú = /uː/</li>
+<li>ó = /oː/</li>
+</ul>
+<p>It can be a bit more confusing when there's more than one vowel together.
+If there's a vowel which has a <em>síneadh fada</em> on it (this line above the áéíúó), it is the one pronounced </p>
+<ul>
+<li><em>ciúin</em> (quiet) - /kʹuːnʹ/
+<ul>
+<li>Note here that while the ú is the only vowel sound pronounced, the other letters serve to show that the first c and last n are slender</li>
+</ul>
+</li>
+<li>Except for éa which is pronounced as /ia/
+<ul>
+<li>scéal - /sʹkʹial/</li>
+<li>with some exceptions</li>
+</ul>
+</li>
+</ul>
+<p>Otherwise if all the vowels are short, you have to learn certain patterns</p>
+<ul>
+<li>ai = /ɑ/ </li>
+<li>ea, eai = /a/</li>
+<li>ei = /e/</li>
+<li>ui, oi = /i/</li>
+<li>io = /u/</li>
+</ul>
+<p>And these next combinations are read as either a vowel combination or a long vowel</p>
+<ul>
+<li>ao = /eː/</li>
+<li>aoi = /iː/</li>
+<li>eo, eoi = /oː/
+<ul>
+<li>with a few exceptions</li>
+</ul>
+</li>
+<li>ae, aei</li>
+<li>ia, iai = /iə/</li>
+<li>ua, uai = /uə/</li>
+</ul>
+<p>Note that for the final two, despite being spelt with an 'a', there is not actually an /a/ sound.</p>
+<p>If a short vowel comes before 'rd', 'rr', (or 'rl' or 'rn' <em>in the middle of a word</em>) it becomes long, e.g.</p>
+<ul>
+<li><em>ard</em> - /ɑːrd/</li>
+<li><em>tharla</em> - /hɑːrlə/</li>
+<li><em>fearr</em> - /fʹaːr/</li>
+</ul>
+<p>If a short vowel comes before nn, ll, ng, or m, it can become lengthened, or a combination of vowels could come about. This does not occur if these letters are followed by a vowel.</p>
+<ul>
+<li>ea, a -&gt; /au/
+<ul>
+<li><em>geall</em> - /gʹaul/</li>
+</ul>
+</li>
+<li>ai -&gt; /ai/</li>
+<li>ei -&gt; /əi/</li>
+<li>oi, ui, i -&gt; /iː/</li>
+<li>u, io, iu -&gt; /uː/</li>
+<li>o -&gt; /ou/ or /uː/
+<ul>
+<li><em>tonn</em> - /tuːn/</li>
+<li><em>poll</em> - /poul/</li>
+</ul>
+</li>
+</ul>
+<h4 id="some-examples-1"><a class="header" href="#some-examples-1">Some Examples</a></h4>
+<ul>
+<li><em>cas</em> (turn) - /kas/
+<ul>
+<li>the single 'a' here is pronounced as /a/</li>
+</ul>
+</li>
+<li><em>geal</em> (bright) - /gʹal/
+<ul>
+<li>the 'ea' is pronounced as /a/</li>
+<li>because of the 'e' we know that the 'g'  is slender</li>
+</ul>
+</li>
+<li><em>saol</em> (life) - /siːl/
+<ul>
+<li>the 'ao' is pronounced as /iː/</li>
+</ul>
+</li>
+<li><em>trua</em> (pity) - /truə/
+<ul>
+<li>ua is pronounced /uə/</li>
+</ul>
+</li>
+<li><em>corn</em> (trophy) - /koːrn/
+<ul>
+<li>short 'o' before 'rn' becomes lengthened to /oː/</li>
+</ul>
+</li>
+<li>buíon - /biːn/
+<ul>
+<li>we know the /iː/ vowel sound is used here because it's the only vowel in the group with a fada</li>
+<li>both consonants are broad</li>
+</ul>
+</li>
+<li><em>greim</em> (bite) - /gʹrʹəimʹ/
+<ul>
+<li>here, the vowel combination of /əi/ is indicated by ei before m.b</li>
+</ul>
+</li>
+</ul>
+<h3 id="unstressed-vowels"><a class="header" href="#unstressed-vowels">Unstressed Vowels</a></h3>
+<p>If a short vowel is unstressed, it is pronounced as /ə/ or /i/</p>
+<ul>
+<li>a, ea, io, iu, o, u -&gt; /ə/</li>
+<li>ai, ei, e, i, oi, ui -&gt; /i/</li>
+</ul>
+<p>If a long vowel is unstressed it is still pronounced normally.</p>
+<h4 id="some-examples-2"><a class="header" href="#some-examples-2">Some Examples</a></h4>
+<ul>
+<li><em>páiste</em> (child) - /paːsʹtʹi/
+the first syllable is stressed, so the unstressed 'e' is pronounced /i/</li>
+<li><em>bradán</em> (salmon) - /brə'dɑːn/
+<ul>
+<li>the second syllable is stressed, so the first 'a' is pronounced as /ə/, and the 'á' is still pronounced as /ɑː/</li>
+</ul>
+</li>
+</ul>
+<h2 id="lenition"><a class="header" href="#lenition">Lenition</a></h2>
+<p>Lenition was introduced previously, here we'll talk about how to read lenited consonants. We know if they are broad or slender depending  on the vowels around them, as with any consonants</p>
+<ul>
+<li>mh, bh = /v/ or /vʹ/</li>
+<li>ch = /x/ or /xʹ/
+<ul>
+<li>slender ch is /h/ if in the middle of a word</li>
+<li><em>oíche</em> - /iːhi/</li>
+</ul>
+</li>
+<li>dh, gh = /ɣ/ or /ɣʹ/
+<ul>
+<li>slender dh and gh at the <em>end</em> of a word are often pronounced /gʹ/</li>
+<li><em>tigh</em> - /tʹigʹ/</li>
+</ul>
+</li>
+<li>fh is completely silent</li>
+<li>ph = /f/ or /fʹ/</li>
+<li>sh = /h/
+<ul>
+<li>with some exceptions</li>
+</ul>
+</li>
+<li>th = /h/</li>
+<li>occasionally r is lenited to /rʹ/, it will be pointed out where this happens
+<ul>
+<li>á rá = /ɑ: rʹɑː/</li>
+</ul>
+</li>
+</ul>
+<h4 id="some-examples-3"><a class="header" href="#some-examples-3">Some Examples</a></h4>
+<ul>
+<li><em>dhún</em> (closed) - /ɣuːn/
+<ul>
+<li>dh = /ɣ/, because it's broad</li>
+</ul>
+</li>
+<li><em>cheap</em> (thought) - /xʹap/
+<ul>
+<li>ch = /xʹ/, because it's slender</li>
+</ul>
+</li>
+<li><em>thuill</em> (earned) - /hiːlʹ/
+<ul>
+<li>th = /h/</li>
+</ul>
+</li>
+</ul>
+<h2 id="eclipsis"><a class="header" href="#eclipsis">Eclipsis</a></h2>
+<p>Eclipsis was introduced previously, here we'll talk about how to read eclipsed consonants. We know if they are broad or slender depending  on the vowels around them, as with any consonants</p>
+<ul>
+<li>Except for <strong>n</strong>g, when eclipsis occurs the original letter is silent and the added letter(s) is pronounced
+<ul>
+<li><strong>m</strong>b = /m/ or /mʹ/</li>
+<li><strong>g</strong>c = /g/ or /gʹ/</li>
+<li><strong>n</strong>d = /n/ or /nʹ/</li>
+<li><strong>bh</strong>f = /v/ or /vʹ/</li>
+<li><strong>b</strong>p = /b/ or /bʹ/</li>
+<li><strong>d</strong>t = /d/ or /dʹ/</li>
+</ul>
+</li>
+<li><strong>n</strong>g is pronounced as /ŋ/ or /ŋʹ/</li>
+</ul>
+<h4 id="some-examples-4"><a class="header" href="#some-examples-4">Some Examples</a></h4>
+<ul>
+<li><em>a ngol</em> (their crying) - /ə ŋol/</li>
+<li>a gciall (their sense) - /i gʹiəl/</li>
+<li>a bhfalla - /ə vɑlə/</li>
+</ul>
+<hr />
+<p>The information here is added to in the pages about verb forms, which are often exceptional in their pronunciation, and in the page about /əi/ and /au/.</p>
+<p>There are various exceptions that aren't mentioned here, but can be seen in [[Muskerry Pronunciation]]</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
