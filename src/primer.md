@@ -111,13 +111,12 @@ Group two is conjugated as follows.
 
 ## The Copula
 The "copula" is used to link words in Irish and can usually be translated as the verb "to be". 
-> **Is mise an múinteoir.** - I'm the teacher.
-> **Is múinteoir é.** - He's a teacher.
+- **Is mise an múinteoir.** - I'm the teacher.
+- **Is múinteoir é.** - He's a teacher.
 
 The order the words are put in can be slightly complicated, but you should learn it through immersion. Something else to note is that the copula itself is often dropped in speech and sometimes in writing.
-
-> **Mise an múinteoir.**
-> **Múinteoir é.**
+- **Mise an múinteoir.**
+- **Múinteoir é.**
 
 Other examples
 - Is é an múinteoir é
@@ -181,3 +180,4 @@ But in Irish it's common to place that part of the sentence at the start using t
 
 It's very common to drop *is* with these sorts of phrases.
 - *Sa chathair atá siad*
+
