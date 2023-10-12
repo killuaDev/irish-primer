@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Initial Mutations - A Primer in Irish</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><div>Introduction</div></li><li class="chapter-item expanded "><a href="primer.html" class="active"><strong aria-hidden="true">1.</strong> Initial Mutations</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">A Primer in Irish</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="initial-mutations"><a class="header" href="#initial-mutations">Initial Mutations</a></h1>
+<p>In Irish, the start of words can <em>mutate</em>. What we mean by this, is that the sound at the start of a word can change because of grammar. I'll talk about 4 main types of mutations here, but I won't go in depth. You'll learn <em>when</em> they're used, from immersion, and you'll learn how they sound through separate pronunciation study. These mutations can indicate different meanings, for example:</p>
+<ul>
+<li>
+<p><em>bo</em> - a cow</p>
+</li>
+<li>
+<p><em>a bhó</em> - his cow</p>
+</li>
+<li>
+<p><em>a bó</em> - her cow</p>
+</li>
+<li>
+<p><em>a mbó</em> - their cow</p>
+</li>
+<li>
+<p><em>glan mé</em> - clean me</p>
+</li>
+<li>
+<p><em>ghlan mé</em> - I cleaned</p>
+</li>
+</ul>
+<p>When a word is mutated, the mutation is usually caused by the word before it.</p>
+<h2 id="lenition-séimhiú"><a class="header" href="#lenition-séimhiú">Lenition (Séimhiú)</a></h2>
+<p>Lenition is an initial mutation which can affect many but not all consonants. It's represented in writing by putting a <em>h</em> after the consonant. This consonant + h always represents a different consonant sound, see more in [[Pronunciation]]</p>
+<ul>
+<li><em>cat</em> -&gt; <em>a chat</em> (his cat)</li>
+</ul>
+<p><em>a</em> (his) is an example of something which lenites nouns following it.</p>
+<p>#TODO something here addressing the fact that lenition can appear without grammatical cause, like in <em>leabhar</em> or <em>cathair</em></p>
+<p>There is a special kind of lenition where <em>s</em> becomes <em>ts</em>, but this is still lenition.</p>
+<ul>
+<li><em>sráid</em> (street) - <em>an tsráid</em> (the street)</li>
+</ul>
+<h2 id="eclipsis-urú"><a class="header" href="#eclipsis-urú">Eclipsis (Urú)</a></h2>
+<p>Eclipsis is an initial mutation which can effect several consonants and all vowels. The pronunciation change is shown by writing the new consonant sound in front of the old sound, with only the new one being pronounced.<sup class="footnote-reference"><a href="#1">1</a></sup>
+All vowels are eclipsed with <em>n-</em>, <em>úll</em> -&gt; <em>a n-úll</em> (their apple)</p>
+<p>Consonants</p>
+<ul>
+<li><em>bata</em> -&gt; <em>a <strong>m</strong>bata</em> (their bat)</li>
+<li><em>cat</em> -&gt; <em>a <strong>g</strong>cat</em> (their cat)</li>
+<li><em>doras</em> -&gt; <em>a <strong>n</strong>doras</em> (their door)</li>
+<li><em>fuinneog</em> -&gt; <em>a <strong>bh</strong>fuinneog</em> (their window)</li>
+<li><em>geata</em> -&gt; <em>a <strong>ng</strong>eata</em>* (their gate)</li>
+<li><em>pota</em> -&gt; <em>a <strong>b</strong>pota</em> (their pot)</li>
+<li><em>teach</em> -&gt; <em>a <strong>d</strong>teach</em> (their house)</li>
+</ul>
+<p><em>a</em> (their) is an example of something which eclipses nouns after it.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><strong>ng</strong> is pronounced as a consonant of its own, rather than just <em>n</em>, see [[Pronunciation]]</p>
+</div>
+<h2 id="h--prefixing"><a class="header" href="#h--prefixing">h- Prefixing</a></h2>
+<p>h- prefixing only affects vowels and is fairly self explanatory, the consonant <em>h</em> is added to the start of the word.</p>
+<ul>
+<li><em>úll</em> - <em>le húll</em> (with an apple)</li>
+</ul>
+<h2 id="t--prefixing"><a class="header" href="#t--prefixing">t- Prefixing</a></h2>
+<p><em>t-</em> prefixing only affects vowels and is when a <em>t</em> is added to the start of the word.</p>
+<ul>
+<li><em>úll</em> - <em>an t-úll</em> (the apple)</li>
+</ul>
+<h1 id="pronunciation"><a class="header" href="#pronunciation">Pronunciation</a></h1>
+<p>Irish pronunciation can be quite difficult for leaners, this isn't helped by the fact that there are many people online who will disregard native pronunciation of the language while teaching. Because of this you have to be careful who you listen to when it comes to Irish. Remember that even people who went to school in Irish or learnt Irish at school, likely weren't taught or ever corrected on their pronunciation.</p>
+<p>Anglicised pronunciation is common, but I would encourage you to avoid it, this is a minority language with a larger learner population than native speaking population, make sure you learn to pronounce it properly, even if you're from Ireland, it has sounds not in your English.</p>
+<p>Irish has no &quot;Standard Pronunciation&quot;, so to learn pronunciation rules you will have to [[Choose a Dialect]].</p>
+<p>The one main thing you need to know before moving on to the next section is that in Irish consonants can be either &quot;broad&quot; or &quot;slender&quot;, meaning that, for example, there are 2 different <em>b</em> sounds. Slender 'b' like in <em>bí</em> or <em>beo</em>, and broad 'b' like in <em>buí</em> or <em>bó</em>.</p>
+<h1 id="spelling"><a class="header" href="#spelling">Spelling</a></h1>
+<p>People are often confused by Irish spelling, you'll sometimes see people perplexed by Irish names, and while it's true that the system doesn't make much sense if you look at it with the rules of English, it does in fact have its own rules.</p>
+<p>I won't go over every rule here, as they really have to be learned with the pronunciation, but the one thing I'd like to mention is how broad and slender consonants are shown in writing.</p>
+<p>The quality of a consonant - whether it's broad or slender - is indicated by the vowels around it. So for example, the fact that 'b' is followed by an 'e' in <em>beo</em> lets us know that this 'b' is slender.</p>
+<p>A consonant which follows an 'i', or a consonant at the start of a word which comes before an 'i' or an 'e' is usually slender. Other consonants are broad.
+Consonants beside each other usually have the same quality.</p>
+<p>Examples (slender consonants in <strong>bold</strong>):</p>
+<ul>
+<li><em>pái<strong>st</strong>e</em></li>
+<li><em><strong>f</strong>i<strong>ll</strong></em></li>
+<li><strong>b</strong>í</li>
+<li><em><strong>c</strong>eathai<strong>r</strong></em></li>
+<li><strong>f</strong>í<strong>s</strong>eán</li>
+</ul>
+<h1 id="recognising-forms-of-words"><a class="header" href="#recognising-forms-of-words">Recognising forms of words</a></h1>
+<p>Nouns in Irish can often change, like how in english we add the ending <em>s</em> to plurals, but there's more variety.</p>
+<p>So for many words, the plural is formed by slenderising the final consonant. That is, changing the final consonant from a broad one to a slender one, and that's shown in writing by putting an 'i' in front of it.</p>
+<ul>
+<li>cat -&gt; cait (a cat -&gt; cats)</li>
+<li>bord -&gt; boird (a table -&gt; tables)</li>
+<li>leabhar -&gt; leabhair (a book -&gt; books)</li>
+<li>éan -&gt; éin (a bird -&gt; birds)</li>
+<li>fear -&gt; fir (a man -&gt; men)</li>
+</ul>
+<h1 id="sentence-structure"><a class="header" href="#sentence-structure">Sentence Structure</a></h1>
+<p>In English the basic sentence structure is Subject-Verb-Object, but in Irish, it's Verb-Subject-Object.</p>
+<p>Feiceann sé pictiúr
+&quot;Sees he picture&quot; = He sees a picture.</p>
+<h2 id="verbs"><a class="header" href="#verbs">Verbs</a></h2>
+<p>Irish has 5 main tenses to think about. As you can see, in some tenses there's both a verb and a pronoun (like <em>Dhún mé</em>), and in some, the information for who's doing the action is included in the ending of the verb, like <em>Dúnaim</em>.</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Past</th><th>Past Habitual</th><th>Present</th><th>Future</th><th>Conditional</th></tr></thead><tbody>
+<tr><td>Irish</td><td>Dhún mé</td><td>Dhúnainn</td><td>Dúnaim</td><td>Dúnfaidh mé</td><td>Dhúnfainn</td></tr>
+<tr><td>English</td><td>I closed</td><td>I used to close</td><td>I close</td><td>I will close</td><td>I would close</td></tr>
+</tbody></table>
+</div>
+<p>There are two main groups of verbs, shown below</p>
+<p>Group one is conjugated like <em>dún</em> above.</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Past</th><th>Past Habitual</th><th>Present</th><th>Future</th><th>Conditional</th></tr></thead><tbody>
+<tr><td>Fág</td><td>D'fhág sé</td><td>D'fhágadh sé</td><td>Fágann sé</td><td>Fágfaidh sé</td><td>D'fhágfadh sé</td></tr>
+<tr><td>Cuir</td><td>Chuir sé</td><td>Chuireadh sé</td><td>Cuireann sé</td><td>Cuirfidh sé</td><td>Chuirfeadh sé</td></tr>
+</tbody></table>
+</div>
+<p>Group two is conjugated as follows.</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Past</th><th>Past Habitual</th><th>Present</th><th>Future</th><th>Conditional</th></tr></thead><tbody>
+<tr><td>Ceannaigh</td><td>Cheannaigh sé</td><td>Cheannaíodh sé</td><td>Ceannaíonn sé</td><td>Ceannóidh sé</td><td>Cheannódh sé</td></tr>
+<tr><td>Imigh</td><td>D'imigh sé</td><td>D'imíodh sé</td><td>Imíonn sé</td><td>Imeoidh sé</td><td>D'imeodh sé</td></tr>
+</tbody></table>
+</div>
+<h2 id="the-copula"><a class="header" href="#the-copula">The Copula</a></h2>
+<p>The &quot;copula&quot; is used to link words in Irish and can usually be translated as the verb &quot;to be&quot;. </p>
+<ul>
+<li><strong>Is mise an múinteoir.</strong> - I'm the teacher.</li>
+<li><strong>Is múinteoir é.</strong> - He's a teacher.</li>
+</ul>
+<p>The order the words are put in can be slightly complicated, but you should learn it through immersion. Something else to note is that the copula itself is often dropped in speech and sometimes in writing.</p>
+<ul>
+<li><strong>Mise an múinteoir.</strong></li>
+<li><strong>Múinteoir é.</strong></li>
+</ul>
+<p>Other examples</p>
+<ul>
+<li>Is é an múinteoir é</li>
+<li>Is sinne na daltaí</li>
+<li>Is dochtúir mé</li>
+</ul>
+<h2 id="verbal-nouns"><a class="header" href="#verbal-nouns">Verbal Nouns</a></h2>
+<p>In Irish, all verbs have a noun form with various uses, we call this the &quot;verbal noun&quot;.</p>
+<p>The verbal noun of <em>dún</em> is <em>dúnadh</em>. There's no rule for how to form all verbal nouns, but they often have one of these endings:</p>
+<ul>
+<li>-adh</li>
+<li>-áil</li>
+<li>-ú</li>
+<li>-int/ilt/irt</li>
+</ul>
+<p>One way to use the verbal noun is with <em>ag</em> to form a progressive.</p>
+<ul>
+<li><em>Táim ag dúnadh an dorais</em> - I am closing the door</li>
+<li><em>Tá mé ag briseadh na fuinneoige</em> - I am breaking the window</li>
+</ul>
+<p>Another is to form an &quot;infinitive&quot; structure, like the idea of &quot;to do&quot;.</p>
+<p>Formed with [object] + <em>a</em> + [verbal noun]</p>
+<ul>
+<li>&quot;Tá mé ag iarraidh an doras a dhúnadh&quot; - I want to close the door</li>
+<li>&quot;Tá mé ag iarraidh an t-úll a ithe&quot; - I want to eat the apple</li>
+</ul>
+<h1 id="prepositions"><a class="header" href="#prepositions">Prepositions</a></h1>
+<p>In Irish, prepositions have different forms for each pronoun, rather than two separate words like english &quot;with him&quot; we have one word &quot;leis&quot;.</p>
+<div class="table-wrapper"><table><thead><tr><th><em>le</em></th><th>with<sup class="footnote-reference"><a href="#2">2</a></sup></th></tr></thead><tbody>
+<tr><td><em>liom</em></td><td>with me</td></tr>
+<tr><td><em>leat</em></td><td>with you</td></tr>
+<tr><td><em>leis</em></td><td>with him</td></tr>
+<tr><td><em>léi</em></td><td>with her</td></tr>
+<tr><td><em>linn</em></td><td>with us</td></tr>
+<tr><td><em>libh</em></td><td>with you (pl.)</td></tr>
+<tr><td><em>leo</em></td><td>with them</td></tr>
+</tbody></table>
+</div>
+<p>The &quot;prepositional pronouns&quot; as they're called vary for each preposition but there are patterns to pick up on. </p>
+<div class="table-wrapper"><table><thead><tr><th>Pronoun</th><th>Pattern</th><th>Examples</th></tr></thead><tbody>
+<tr><td>me</td><td>-m</td><td>liom, agam, orm, asam, dom</td></tr>
+<tr><td>you</td><td>-t</td><td>leat, agat, ort, asat, duit</td></tr>
+<tr><td>him</td><td>often similar to the base form</td><td>air, dó, de, as</td></tr>
+<tr><td>her</td><td>-i</td><td>léi, aici, uirthi, aisti, di</td></tr>
+<tr><td>us</td><td>-inn</td><td>linn, againn, orainn, asainn, dúinn</td></tr>
+<tr><td>you (pl.)</td><td>-ibh</td><td>libh, agaibh, oraibh, asaibh, daoibh</td></tr>
+<tr><td>them</td><td>-u</td><td>acu, orthu, astu</td></tr>
+</tbody></table>
+</div>
+<p>Even without these patterns you will pick up many of the forms quickly as they're so common.</p>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>As with all languages, it's important to remember that prepositions have so many uses that it's dangerous to think of them as being equivalent to one word, I just translated it as &quot;with&quot; for simplicity's sake</p>
+</div>
+<h1 id="fronting"><a class="header" href="#fronting">Fronting</a></h1>
+<p>Another use of the copula earlier is to add emphasis to a specific part of the sentence, in english we do this with our voice, and in writing with <em>italics.</em></p>
+<p>But in Irish it's common to place that part of the sentence at the start using the copula.</p>
+<ul>
+<li>Is mise a dhún an doras - It was me who closed the door</li>
+<li>Is sa chathair atá siad - They're in the <em>city</em></li>
+</ul>
+<p>It's very common to drop <em>is</em> with these sorts of phrases.</p>
+<ul>
+<li><em>Sa chathair atá siad</em></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
